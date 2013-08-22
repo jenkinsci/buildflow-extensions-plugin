@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.jenkinsci.plugins.buildflow.concurrent.extension;
 
 import com.cloudbees.plugins.flow.BuildFlowDSLExtension;
@@ -43,14 +42,14 @@ public class ConcurrentBuildFlowDSLExension extends
 	@Override
 	public Object createExtension(String s, FlowDelegate flowDelegate) {
 		// This will be called for every flow run when an extension is looked up
-		logger.log(Level.INFO, "createExtension({0}, {1}) called.", new Object[] {s,
+		logger.log(Level.FINE, "createExtension({0}, {1}) called.", new Object[] {s,
 		                                                                         flowDelegate.getFlowRun()
 		                                                                         .getFullDisplayName()});
 		if ("build-flow-concurrent-extensions".equals(s)) {
-			//logger.log(Level.INFO, "returning new Block");
+			logger.log(Level.FINE, "returning new Block");
 			return new ConcurrentBuildFlowDSL(flowDelegate);
 		}
-		logger.log(Level.INFO, "Ignoring as not our extension");
+		logger.log(Level.FINE, "Ignoring as not our extension");
 		return null;
 	}
 

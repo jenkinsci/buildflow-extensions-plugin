@@ -21,9 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-
-
 package org.jenkinsci.plugins.buildflow.concurrent.extension
 
 import com.cloudbees.plugins.flow.BuildFlow
@@ -112,25 +109,6 @@ class BlockTest {
 		sfr1.get()
 		sfr2.get()
 		sfr3.get()
-
-		println("fr1 log:")
-		println(fr1.getLog(Integer.MAX_VALUE))
-		println("fr2 log:")
-		println(fr2.getLog(Integer.MAX_VALUE))
-		println("fr3 log:")
-		println(fr3.getLog(Integer.MAX_VALUE))
-
-		println("fr1: ${fr1}  status ${fr1.result}")
-		println("fr2: ${fr2}  status ${fr2.result}")
-		println("fr3: ${fr3}  status ${fr3.result}")
-
-		println("job1")
-		println(job1.builds)
-		println("job2")
-		println(job2.builds)
-
-		println("flow")
-		println(flow.builds)
 
 		assertEquals("job1 should have 3 runs", 3, job1.builds.size())
 		// there is a slight timing issue in that the block for entering job2

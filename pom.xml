@@ -1,5 +1,4 @@
 <?xml version="1.0"?>
-
 <!--
   ~ The MIT License
   ~
@@ -42,7 +41,7 @@
 	<description>This plugin provides DSL extensions to the BuildFlow plugin to allow better
 		orchestration of concurrent jobs
 	</description>
-	<url>http://wiki.jenkins-ci.org/display/JENKINS/XXXX</url>
+	<url>http://wiki.jenkins-ci.org/display/JENKINS/Build+Flow+Concurrent+Extensions+Plugin</url>
 	<inceptionYear>2013</inceptionYear>
 
 	<properties>
@@ -58,15 +57,15 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:git://git@github.com/jenkinsci/XXX.git</connection>
-		<developerConnection>scm:git:https://github.com/jenkinsci/XXX.git</developerConnection>
-		<url>https://github.com/jenkinsci/XXX/</url>
+		<connection>scm:git:git://git@github.com/jenkinsci/build-flow-concurrent-extensions-plugin.git</connection>
+		<developerConnection>scm:git:https://github.com/jenkinsci/build-flow-concurrent-extensions-plugin.git</developerConnection>
+		<url>https://github.com/jenkinsci/build-flow-concurrent-extensions-plugin/</url>
 	</scm>
 
 	<licenses>
 		<license>
 			<name>MIT</name>
-			<url>https://github.com/jenkinsci/XXX/blob/master/LICENCE.txt</url>
+			<url>https://github.com/jenkinsci/build-flow-concurrent-extensions-plugin/blob/master/LICENCE.txt</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>

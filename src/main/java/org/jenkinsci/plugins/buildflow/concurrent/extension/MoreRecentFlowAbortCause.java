@@ -21,21 +21,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.jenkinsci.plugins.buildflow.concurrent.extension;
 
-import jenkins.model.CauseOfInterruption;
 import com.cloudbees.plugins.flow.FlowRun;
+import jenkins.model.CauseOfInterruption;
 
 /**
  * The cause of interruption when we abort the build if a more recent flow requests the same block.
+ *
  * @author James Nord
  */
 public class MoreRecentFlowAbortCause extends CauseOfInterruption {
 
-	/** The number of the later build. */
+	/**
+	 * The number of the later build.
+	 */
 	private int newer;
-	/** The block that was being entered. */
+	/**
+	 * The block that was being entered.
+	 */
 	private String block;
 
 	/**

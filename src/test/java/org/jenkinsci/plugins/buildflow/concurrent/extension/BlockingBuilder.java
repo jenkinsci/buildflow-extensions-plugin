@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package org.jenkinsci.plugins.buildflow.concurrent.extension;
 
 import hudson.Extension;
@@ -55,9 +54,9 @@ public class BlockingBuilder extends Builder {
 
 
 	public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener) {
-		System.out.println("Blocking Builder in build " + build.getFullDisplayName() + "starting");
+		System.out.println("Blocking Builder in build " + build.getFullDisplayName() + " starting");
 		try {
-			System.out.println("Blocking Builder in build " + build.getFullDisplayName() + "waiting");
+			listener.getLogger().println("Blocking Builder in build " + build.getFullDisplayName() + " waiting");
 			while (file.exists()) {
 				Thread.sleep(10L);
 			}
@@ -65,7 +64,7 @@ public class BlockingBuilder extends Builder {
 		} catch (InterruptedException ex) {
 			build.setResult(FAILURE);
 		}
-		System.out.println("Blocking Builder in build " + build.getFullDisplayName() + " completing " + build.getResult());
+		listener.getLogger().println("Blocking Builder in build " + build.getFullDisplayName() + " completing " + build.getResult());
 		return true;
 	}
 

@@ -21,8 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-
 package org.jenkinsci.plugins.buildflow.concurrent.extension
 
 import com.cloudbees.plugins.flow.FlowDelegate
@@ -56,22 +54,20 @@ public class ConcurrentBuildFlowDSL {
 		// due to the nature of any jobs and scheduling the order of items inserted may not be
 		// ordered by build number so use an explicit comparator.
 		SortedSet waiting = getSharedState(blockName + "_WAITING_LIST",
-		                            Collections.synchronizedSortedSet(new TreeSet(FlowRunComparator.INSTANCE)))
-		//println("obtained waiting with identity " + System.identityHashCode(waiting))
+		                            Collections.synchronizedSortedSet(new TreeSet()))
 		ReentrantLock lock = getSharedState(blockName + "_LOCK", new ReentrantLock())
-		//println("obtained lock with identity " + System.identityHashCode(lock))
 
 		waiting.add(flowDelegate.flowRun);
 		// try and get the lock.
 		try {
-			println("block ($blockName) {")
+			flowDelegate.println("block ($blockName) {")
 			++flowDelegate.indent
-			println("// waiting for lock")
+			flowDelegate.println("// waiting for lock")
 			while (true) {
 				boolean locked = lock.tryLock(1L, TimeUnit.SECONDS)
 				FlowRun next = waiting.last();
 				if (next != flowDelegate.flowRun) {
-					println("// [${flowDelegate.flowRun}] a more recent FlowRun ${next} is requesting the same" +
+					flowDelegate.println("// [${flowDelegate.flowRun}] a more recent FlowRun ${next} is requesting the same" +
 							"lock (${blockName}) - not progressing with the build")
 					// if there is a newer waiting FlowRun then remove ourselves and abort
 					waiting.remove(flowDelegate.flowRun)
@@ -89,7 +85,7 @@ public class ConcurrentBuildFlowDSL {
 					locked = false
 				}
 				if (locked) {
-					println("// block ($blockName) acquired by ${flowDelegate.flowRun}")
+					flowDelegate.println("// block ($blockName) acquired by ${flowDelegate.flowRun}")
 					// we know there is not a newer BuildFlow than us!
 					// actually there is a small race condition here - but not worth extra locking.
 					innerBlock()
@@ -97,15 +93,6 @@ public class ConcurrentBuildFlowDSL {
 					lock.unlock()
 					return true
 				}
-				/*
-				else {
-					println("lock not aquired...")
-					println("waiting is : " + waiting.hashCode())
-					println("waiting identity is : " + System.identityHashCode(waiting))
-					println("waiting.last is : " + waiting.last())
-					println("flow run is : " + flowDelegate.flowRun)
-				}
-				*/
 			}
 		}
 		finally {
