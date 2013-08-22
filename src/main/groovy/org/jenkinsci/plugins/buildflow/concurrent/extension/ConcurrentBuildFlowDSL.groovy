@@ -84,8 +84,9 @@ public class ConcurrentBuildFlowDSL {
 					if (locked) {
 						lock.unlock()
 					}
+					//Executor.currentExecutor().
 					Executor.currentExecutor().interrupt(Result.ABORTED, new MoreRecentFlowAbortCause(next, blockName))
-					//return false
+					locked = false
 				}
 				if (locked) {
 					println("// block ($blockName) acquired by ${flowDelegate.flowRun}")

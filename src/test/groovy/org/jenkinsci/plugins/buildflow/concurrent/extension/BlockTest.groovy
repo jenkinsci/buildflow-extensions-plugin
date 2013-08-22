@@ -113,12 +113,16 @@ class BlockTest {
 		sfr2.get()
 		sfr3.get()
 
-		println("LOG")
+		println("fr1 log:")
+		println(fr1.getLog(Integer.MAX_VALUE))
+		println("fr2 log:")
 		println(fr2.getLog(Integer.MAX_VALUE))
+		println("fr3 log:")
+		println(fr3.getLog(Integer.MAX_VALUE))
 
-		println("fr1: " + fr1)
-		println("fr2: " + fr2)
-		println("fr3: " + fr3)
+		println("fr1: ${fr1}  status ${fr1.result}")
+		println("fr2: ${fr2}  status ${fr2.result}")
+		println("fr3: ${fr3}  status ${fr3.result}")
 
 		println("job1")
 		println(job1.builds)
