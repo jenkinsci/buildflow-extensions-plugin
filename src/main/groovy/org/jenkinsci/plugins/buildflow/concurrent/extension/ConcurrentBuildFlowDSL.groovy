@@ -28,6 +28,7 @@ import com.cloudbees.plugins.flow.FlowRun
 import hudson.AbortException
 import hudson.model.Executor
 import hudson.model.Result
+import hudson.model.Run
 
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.ReentrantLock
@@ -42,6 +43,7 @@ public class ConcurrentBuildFlowDSL {
 	def ConcurrentBuildFlowDSL(FlowDelegate flowDelegate) {
 		this.flowDelegate = flowDelegate;
 	}
+
 	/**
 	 * The block DSL ensures that only one FlowRun of a particular BuildFlow will execute the steps contained within it concurrently.
 	 * It further will only allow the most recent FlowRun to proceed if multiple become blocked.
@@ -80,14 +82,14 @@ public class ConcurrentBuildFlowDSL {
 					if (locked) {
 						lock.unlock()
 					}
-					//Executor.currentExecutor().
-					Executor.currentExecutor().interrupt(Result.ABORTED, new MoreRecentFlowAbortCause(next, blockName))
-					locked = false
+					def abortCause = new MoreRecentFlowAbortCause(next, blockName)
+					Executor.currentExecutor().interrupt(Result.ABORTED, abortCause)
+					throw new AbortException(abortCause.shortDescription)
 				}
 				if (locked) {
 					flowDelegate.println("// block ($blockName) acquired by ${flowDelegate.flowRun}")
 					// we know there is not a newer BuildFlow than us!
-					// actually there is a small race condition here - but not worth extra locking.
+					// (actually there is a small race condition here - but not worth extra locking).
 					innerBlock()
 					waiting.remove(flowDelegate.flowRun)
 					lock.unlock()
