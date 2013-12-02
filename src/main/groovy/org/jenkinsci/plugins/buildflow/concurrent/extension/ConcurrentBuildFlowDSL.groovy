@@ -49,11 +49,11 @@ public class ConcurrentBuildFlowDSL {
 		this.flowDelegate = flowDelegate;
 	}
 
-/**
- * Get the most recent stable build of a project.
- * @param project name of the project (relative to this flow).
- * @throws JobNotFoundException if the job can not be located, or there is no lastStable build.
- */
+	/**
+	 * Get the most recent stable build of a project.
+	 * @param project name of the project (relative to this flow).
+	 * @throws JobNotFoundException if the job can not be located, or there is no lastStable build.
+	 */
 	def getLastStableRun(String project) {
 		ItemGroup context = flowDelegate.build.getProject().getParent()
 		def proj  = Jenkins.instance.getItem(project, (ItemGroup) context, AbstractProject.class)
@@ -93,7 +93,7 @@ public class ConcurrentBuildFlowDSL {
 				boolean locked = lock.tryLock(1L, TimeUnit.SECONDS)
 				FlowRun next = waiting.last();
 				if (next != flowDelegate.flowRun) {
-					flowDelegate.println("// [${flowDelegate.flowRun}] a more recent FlowRun " +
+					flowDelegate.println("// a more recent FlowRun " +
 					                     HyperlinkNote.encodeTo('/'+ next.getUrl(), next.getFullDisplayName()) +
 					                     " is requesting the same lock (${blockName}) - not progressing with the build")
 					// if there is a newer waiting FlowRun then remove ourselves and abort
@@ -110,7 +110,7 @@ public class ConcurrentBuildFlowDSL {
 					throw new AbortException(abortCause.shortDescription)
 				}
 				if (locked) {
-					flowDelegate.println("// lock ($blockName) acquired by ${flowDelegate.flowRun}")
+					flowDelegate.println("// lock ($blockName) acquired.")
 					// we know there is not a newer BuildFlow than us!
 					// (actually there is a small race condition here - but not worth extra locking).
 					innerBlock()
