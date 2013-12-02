@@ -41,7 +41,7 @@
 	<description>This plugin provides DSL extensions to the BuildFlow plugin to allow better
 		orchestration of concurrent jobs
 	</description>
-	<url>http://wiki.jenkins-ci.org/display/JENKINS/Build+Flow+Concurrent+Extensions+Plugin</url>
+	<url>http://wiki.jenkins-ci.org/display/JENKINS/Build+Flow+Extensions+Plugin</url>
 	<inceptionYear>2013</inceptionYear>
 
 	<properties>
@@ -57,9 +57,9 @@
 	</developers>
 
 	<scm>
-		<connection>scm:git:git://git@github.com/jenkinsci/build-flow-concurrent-extensions-plugin.git</connection>
-		<developerConnection>scm:git:https://github.com/jenkinsci/build-flow-concurrent-extensions-plugin.git</developerConnection>
-		<url>https://github.com/jenkinsci/build-flow-concurrent-extensions-plugin/</url>
+		<connection>scm:git:git://git@github.com/jenkinsci/buildflow-extensions-plugin.git</connection>
+		<developerConnection>scm:git:https://github.com/jenkinsci/buildflow-extensions-plugin.git</developerConnection>
+		<url>https://github.com/jenkinsci/buildflow-extensions-plugin.git/</url>
 	</scm>
 
 	<licenses>
