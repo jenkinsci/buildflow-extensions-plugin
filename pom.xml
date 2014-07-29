@@ -33,13 +33,13 @@
 	</parent>
 
 	<groupId>org.jenkins-ci.plugins</groupId>
-	<artifactId>build-flow-concurrent-extensions-plugin</artifactId>
+	<artifactId>build-flow-extensions-plugin</artifactId>
 	<version>0.1-SNAPSHOT</version>
 	<packaging>hpi</packaging>
 
-	<name>Build Flow Concurrent Extensions</name>
-	<description>This plugin provides DSL extensions to the BuildFlow plugin to allow better
-		orchestration of concurrent jobs
+	<name>Build Flow Extensions</name>
+	<description>This plugin provides DSL extensions to the BuildFlow plugin.  It main feature is to
+		allow better orchestration of concurrent jobs.
 	</description>
 	<url>http://wiki.jenkins-ci.org/display/JENKINS/Build+Flow+Extensions+Plugin</url>
 	<inceptionYear>2013</inceptionYear>
@@ -65,7 +65,7 @@
 	<licenses>
 		<license>
 			<name>MIT</name>
-			<url>https://github.com/jenkinsci/build-flow-concurrent-extensions-plugin/blob/master/LICENCE.txt</url>
+			<url>https://github.com/jenkinsci/build-flow-extensions-plugin/blob/master/LICENCE.txt</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
@@ -74,7 +74,7 @@
 		<dependency>
 			<groupId>com.cloudbees.plugins</groupId>
 			<artifactId>build-flow-plugin</artifactId>
-			<version>0.11-SNAPSHOT</version>
+			<version>0.11</version>
 		</dependency>
 		<dependency>
 			<groupId>org.codehaus.groovy</groupId>
