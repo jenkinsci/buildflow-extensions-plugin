@@ -42,8 +42,8 @@ This plugin provides DSL extensions to the BuildFlow plugin to allow better orch
      }
     )
 
-See the documentation and release notes at [Build Flow Concurrent Extensions Plugin](https://wiki.jenkins-ci
-.org/display/JENKINS/Build+Flow+Extensions+Plugin) on the Jenkins Wiki for more information.
+See the documentation and release notes at [Build Flow Concurrent Extensions Plugin](https://wiki.jenkins-ci.org/display/JENKINS/Build+Flow+Extensions+Plugin) 
+on the Jenkins Wiki for more information.
 
 Other informations:
 * Bug Tracker for known issues and expectations : [Jenkins Build Flow Concurrent Extensions Component](https://issues
